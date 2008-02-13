@@ -1,0 +1,38 @@
+import web
+from ZopePageTemplates import PageTemplate
+from os import curdir, sep
+
+class PageTemplate(PageTemplate):
+   def __call__(self, context={}, *args):
+      if not context.has_key('args'):
+         context['args'] = args
+      return self.pt_render(extra_context=context)
+
+views_dir = curdir + sep + 'views' + sep
+template = PageTemplate()
+
+class WebZPTController:
+    '''
+    This class will be inherited by any class in the webpy
+    application that wants to use Zope Page Templates
+    '''
+    def view(self, context = {}):
+       '''
+       Every controller will contain a view that displays it's
+       zpt file in the views folder.
+       '''
+       if context == {}:
+          context = {self.__class__.__name__ : self}
+        try:
+            file = open(views_dir + self.__class__.__name__ + '.zpt')
+            template.write(file.read())
+        except IOError:
+            template.write("<html><body>Please create '%s.zpt' in '%s' before calling it's controller" % (self.__class__.__name__, views_dir))
+        return template(context = context)
+
+    def GET(self):
+       '''
+       The GET will print out the view to the page with the
+       appropriate context.
+       '''
+       print self.view(context = {self.__class__.__name__ : self})

@@ -1,0 +1,15 @@
+import web
+from ZopePageTemplates import PageTemplate
+
+class PageTamplate(PageTemplate):
+    def __call__(delf, context={}, *args):
+        if not context.has_key('args'):
+            context['args'] = args
+      return self.pt_render(extra_context=context)
+
+urls = (
+    '/', 'index')
+
+class index:
+    def GET(self):
+        print "Something"
