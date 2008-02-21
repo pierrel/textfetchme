@@ -1,6 +1,5 @@
 <html>
-  <div tal:replace="structure top/view">This is where Top goes</div>
-  <body>
-    <div tal:replace="structure body/view">This is not the real body</div>
-  </body>
+  <ul>
+  <li tal:repeat="name student/names"><span tal:replace="name">not rendered</span></li>
+  </ul>
 </html>

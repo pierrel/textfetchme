@@ -1,1 +1,0 @@
-The body really is <span tal:content="quotes/body">This is also not it</span>
