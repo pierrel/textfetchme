@@ -1,4 +1,4 @@
-from webzpt import WebZPTController, web, class_from
+From webzpt import WebZPTController, web, class_from
 import re
 
 urls = (
