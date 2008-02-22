@@ -1,0 +1,28 @@
+<html>
+  <body>
+    <h1 tal:content="student/name">Name Goes Here</h1>
+    <ul>
+      <li tal:repeat="requirement student/plan">
+	<span tal:replace="python:requirement['term']">Term</span> - <span tal:replace="python:requirement['requirement']">Req</span> - <span tal:replace="python:requirement['fillers']">Fillers</span>
+      </li>
+    </ul>
+
+    <!-- >
+    the code below should work, but it's throwing some strange error.
+    Please look over it for me to see if there are any silly typos.
+    It does exactly what the above does, only with a table instead of a list.
+    <  -->
+
+    <!--table>
+      <td tal:repeat="requirement student/plan">
+	<tr tal:content="python:requirement['term']">Term goes here</tr>
+	<tr tal:content="python:requirement['requirement']">Requirement name goes here</tr>
+	<tr>
+	  <ul>
+	    <li tal:repeat="filler requirement/fillers"><span tal:replace="filler">Filler goes here</span></li>
+	  </ul>
+	</tr>
+      </td>
+    </table-->
+  </body>
+</html>
