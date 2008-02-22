@@ -1,11 +1,12 @@
 <html>
   <body>
     <h1 tal:content="student/name">Name Goes Here</h1>
-    <ul>
+    <span tal:content="student/plan">Plan goes here</span>
+    <!--ul>
       <li tal:repeat="requirement student/plan">
 	<span tal:replace="python:requirement['term']">Term</span> - <span tal:replace="python:requirement['requirement']">Req</span> - <span tal:replace="python:requirement['fillers']">Fillers</span>
       </li>
-    </ul>
+    </ul-->
 
     <!-- >
     the code below should work, but it's throwing some strange error.
