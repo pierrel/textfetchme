@@ -29,6 +29,7 @@ class carter:
 Dictionary holding instructions for each command to carter.
 Strings are used to split the cml, nesting each successive
 split into lists.
+Regexes are applied to the string of cml and replaces it.
 '''
 carter_command_dict = {'ping': (re.compile('[\d.]+'),),
                        'history': (',', "\t"),
@@ -36,12 +37,12 @@ carter_command_dict = {'ping': (re.compile('[\d.]+'),),
 def cml2python(command, cml):
     '''
     Used in conjuction with carter_command_list to parse the returned
-    CharlesML and turns the it into a list (usually a nested list).
+    CharlesML and turns the cml into a list (usually a nested list).
     '''
     parsed = cml.replace("\n", '')#remove and newlines (usually found at the end of carter output)
     try:
         for parse_method in carter_command_dict[command]: #iterates through tuple of parsing commands
-            if type(parse_method) == str:#if the pargin command is a string then uses a split
+            if type(parse_method) == str:#if the parsing command is a string then uses a split
                 if type(parsed) == str:
                     parsed = parsed.split(parse_method)
                 else:
