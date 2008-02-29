@@ -38,19 +38,19 @@ class student(WebZPTController):
         '''
         Default gtid and password is the correct combination
         '''
-#        self.addr = ('localhost', 7272)
-#        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#        self.socket.connect(self.addr)
-#        if self.socket.send(gtid + "\n") < len(gtid)-1: raise CountNotConnectToCarter, "couldn't send gtid"
-#        if self.socket.send(password+"\n") < len(password)-1: raise CountNotConnectToCarter, "couldn't send password"
+       self.addr = ('localhost', 7272)
+       self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+       self.socket.connect(self.addr)
+       if self.socket.send(gtid + "\n") < len(gtid)-1: raise CountNotConnectToCarter, "couldn't send gtid"
+       if self.socket.send(password+"\n") < len(password)-1: raise CountNotConnectToCarter, "couldn't send password"
 
- #       self.socket.send("name\n")
- #       self.name = self.socket.recv(1024).replace("0\t", '')
+       self.socket.send("name\n")
+       self.name = self.socket.recv(1024).replace("0\t", '')
         
- #       self.socket.send("create pl-embodimentintelligence\n")
- #       self.socket.recv(1024)
- #       self.socket.send("switch pl-embodimentintelligence\n")
- #       self.socket.recv(1024)
+       self.socket.send("create pl-embodimentintelligence\n")
+       self.socket.recv(1024)
+       self.socket.send("switch pl-embodimentintelligence\n")
+       self.socket.recv(1024)
 
     def plan(self):
         plan_list = []
