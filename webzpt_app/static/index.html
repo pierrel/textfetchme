@@ -1,0 +1,705 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>ThreadSpace Demo</title>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+    <link rel="stylesheet" href="schedule.css" type="text/css" />
+    
+    <script type="text/javascript" src="scripts/prototype.js"></script>
+    <script type="text/javascript" src="scripts/effects.js"></script>
+    <script type="text/javascript" src="scripts/dragdrop.js"></script>
+    
+    
+    <script type="text/javascript">
+    
+    /*
+    window.onload = function() {
+      var dropLinks = document.getElementsByClassName("drop");
+      for(var i = 0; i < dropLinks.length; i++) {
+        dropLinks[i].onclick = function() { 
+          if(this.parentNode.parentNode) { 
+            alert("Drop Class: " + this.parentNode.parentNode.outerHTML); 
+            return false;
+          } else { 
+            return true; 
+          }
+        };
+      }
+    };
+    */
+    
+    </script>
+    
+  </head>
+  
+  <body>
+    
+    <div id="header">
+      ThreadSpace
+    </div>
+    
+    <h1>Account</h1>
+    <div id="account">
+      James Mitchell (gtg872p) <a href="logout.html">Logout</a>
+    </div>
+    
+    <h1 id="menu_heading">Menu</h1>
+    <ul id="menu">
+      <li><a href="something.html">One</a></li>
+      <li class="current"><a href="something.html">Two</a></li>
+      <li><a href="something.html">Three</a></li>
+      <li><a href="something.html">Four</a></li>
+    </ul>
+    
+    <h1 id="schedule_heading">Schedule</h1>
+    <div id="schedule">
+      
+      <ol id="semesters">
+        
+        
+        <li class="semester past"><h2>Fall 2007</h2>
+          <ul id="2007fall">
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">CS1321</th>
+                    <td class="coursename">Introduction to Programming</td>
+                    <td class="requirement">CS Core</td>
+                    <td class="grade" colspan="2">A</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">MATH1502</th>
+                    <td class="coursename">Calculus II</td>
+                    <td class="requirement">Math</td>
+                    <td class="grade" colspan="2">A</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">CS1050</th>
+                    <td class="coursename">Constructing Proofs</td>
+                    <td class="requirement">CS Core</td>
+                    <td class="grade" colspan="2">A</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">ENG1101</th>
+                    <td class="coursename">English I</td>
+                    <td class="requirement">English</td>
+                    <td class="grade" colspan="2">A</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+          </ul>
+        </li>
+        
+        
+        <li class="semester current"><h2>Spring 2008</h2>
+          <ul id="2008spring">
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">CS1322</th>
+                    <td class="coursename">Object-Oriented Programming</td>
+                    <td class="requirement">CS Core</td>
+                    <td class="tab">&nbsp;</td>
+                    <td class="blank">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">ENG1102</th>
+                    <td class="coursename">English II</td>
+                    <td class="requirement">English</td>
+                    <td class="tab">&nbsp;</td>
+                    <td class="blank">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr onclick="Effect.toggle($('details1'), 'appear');">
+                    <th class="coursenumber">ECE2030</th>
+                    <td class="coursename">Introduction to Computer Engineering</td>
+                    <td class="requirement">Tech. Elective</td>
+                    <td class="drop" colspan="2"><a href="drop.html">&times;</a></td>
+                  </tr>
+                  <tr class="details" id="details1">
+                    <td colspan="3">
+                      More
+                    </td>
+                    <td class="tab">&nbsp;</td>
+                    <td class="blank">&nbsp;</td>
+                  </td>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">MATH1502</th>
+                    <td class="coursename">Calculus II</td>
+                    <td class="requirement">Math</td>
+                    <td class="tab">&nbsp;</td>
+                    <td class="blank">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+          </ul>
+        </li>
+        
+        
+        
+        
+        <li class="semester future"><h2>Summer 2008</h2>
+          <ul id="2008summer">
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">CS1322</th>
+                    <td class="coursename">Object-Oriented Programming</td>
+                    <td class="requirement">CS Core</td>
+                    <td class="tab">&nbsp;</td>
+                    <td class="blank">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">ENG1102</th>
+                    <td class="coursename">English II</td>
+                    <td class="requirement">English</td>
+                    <td class="tab">&nbsp;</td>
+                    <td class="blank">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">ECE2030</th>
+                    <td class="coursename">Introduction to Computer Engineering</td>
+                    <td class="requirement">Tech. Elective</td>
+                    <td class="drop" colspan="2"><a href="drop.html">&times;</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">MATH1502</th>
+                    <td class="coursename">Calculus II</td>
+                    <td class="requirement">Math</td>
+                    <td class="tab">&nbsp;</td>
+                    <td class="blank">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+          </ul>
+        </li>
+        
+        
+        
+        
+        <li class="semester future"><h2>Fall 2008</h2>
+          <ul id="2008fall">
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">CS1322</th>
+                    <td class="coursename">Object-Oriented Programming</td>
+                    <td class="requirement">CS Core</td>
+                    <td class="tab">&nbsp;</td>
+                    <td class="blank">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">ENG1102</th>
+                    <td class="coursename">English II</td>
+                    <td class="requirement">English</td>
+                    <td class="tab">&nbsp;</td>
+                    <td class="blank">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">ECE2030</th>
+                    <td class="coursename">Introduction to Computer Engineering</td>
+                    <td class="requirement">Tech. Elective</td>
+                    <td class="drop" colspan="2"><a href="drop.html">&times;</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">MATH1502</th>
+                    <td class="coursename">Calculus II</td>
+                    <td class="requirement">Math</td>
+                    <td class="tab">&nbsp;</td>
+                    <td class="blank">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+          </ul>
+        </li>
+        
+        
+        
+        
+        <li class="semester future"><h2>Spring 2009</h2>
+          <ul id="2009spring">
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">CS1322</th>
+                    <td class="coursename">Object-Oriented Programming</td>
+                    <td class="requirement">CS Core</td>
+                    <td class="tab">&nbsp;</td>
+                    <td class="blank">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">ENG1102</th>
+                    <td class="coursename">English II</td>
+                    <td class="requirement">English</td>
+                    <td class="tab">&nbsp;</td>
+                    <td class="blank">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">ECE2030</th>
+                    <td class="coursename">Introduction to Computer Engineering</td>
+                    <td class="requirement">Tech. Elective</td>
+                    <td class="drop" colspan="2"><a href="drop.html">&times;</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">MATH1502</th>
+                    <td class="coursename">Calculus II</td>
+                    <td class="requirement">Math</td>
+                    <td class="tab">&nbsp;</td>
+                    <td class="blank">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+          </ul>
+        </li>
+        
+        
+        
+        
+        <li class="semester future"><h2>Summer 2009</h2>
+          <ul id="2009summer">
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">CS1322</th>
+                    <td class="coursename">Object-Oriented Programming</td>
+                    <td class="requirement">CS Core</td>
+                    <td class="tab">&nbsp;</td>
+                    <td class="blank">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">ENG1102</th>
+                    <td class="coursename">English II</td>
+                    <td class="requirement">English</td>
+                    <td class="tab">&nbsp;</td>
+                    <td class="blank">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">ECE2030</th>
+                    <td class="coursename">Introduction to Computer Engineering</td>
+                    <td class="requirement">Tech. Elective</td>
+                    <td class="drop" colspan="2"><a href="drop.html">&times;</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            
+            <li class="creditblock">
+              <table>
+                <tbody>
+                  <tr>
+                    <th class="coursenumber">MATH1502</th>
+                    <td class="coursename">Calculus II</td>
+                    <td class="requirement">Math</td>
+                    <td class="tab">&nbsp;</td>
+                    <td class="blank">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+          </ul>
+        </li>
+        
+        <!--
+        
+        <li class="semester past"><h2>Fall 2007</h2>
+          <ul id="2007fall">
+            <li class="creditblock">
+              <span class="grade">B</span>
+              <h3 class="coursenumber">CS1322</h3>
+              <div class="coursename">Introduction to Programming</div>
+              <span class="requirement">Requirement</span>
+            </li>
+            <li class="creditblock">
+              <span class="grade">A</span>
+              <h3 class="coursenumber">CS4803CNS</h3>
+              <div class="coursename">Introduction to Programming and more and more and more and more and more and more and more and more and more.</div>
+              <span class="requirement">Requirement</span>
+            </li>
+            <li class="creditblock">
+              <span class="grade">A</span>
+              <h3 class="coursenumber">ENG1101</h3>
+              <div class="coursename">Introduction to Programming</div>
+              <span class="requirement">Requirement</span>
+            </li>
+            <li class="creditblock">
+              <span class="grade">C</span>
+              <h3 class="coursenumber">MATH1501</h3>
+              <div class="coursename">Introduction to Programming</div>
+              <span class="requirement">Requirement</span>
+            </li>
+          </ul>
+        
+        </li>
+        
+        
+        <li class="semester current"><h2>Spring 2008</h2>
+          <ul id="2008spring">
+            <li class="creditblock">
+              <span class="blank">&nbsp;</span>
+              <h3 class="coursenumber">CS1322</h3>
+              <div class="coursename">Introduction to Programming</div>
+              <span class="requirement">Requirement</span>
+            </li>
+            <li class="creditblock">
+              <a href="drop.html" class="drop">&times;</a>
+              <h3 class="coursenumber">CS4803CNS</h3>
+              <div class="coursename">Introduction to Programming</div>
+              <span class="requirement">Requirement</span>
+            </li>
+            <li class="creditblock">
+              <span class="blank">&nbsp;</span>
+              <h3 class="coursenumber">ENG1101</h3>
+              <div class="coursename">Introduction to Programming</div>
+              <span class="requirement">Requirement</span>
+            </li>
+            <li class="creditblock">
+              <a href="drop.html" class="drop">&times;</a>
+              <h3 class="coursenumber">MATH1501</h3>
+              <div class="coursename">Introduction to Programming</div>
+              <span class="requirement">Requirement</span>
+            </li>
+          </ul>
+        </li>
+        
+        
+        
+        <li class="semester future"><h2>Summer 2008</h2>
+          <ul id="2008summer">
+            <li class="creditblock">
+              <span class="blank">&nbsp;</span>
+              <h3 class="coursenumber">CS1322</h3>
+              <div class="coursename">Introduction to Programming</div>
+              <span class="requirement">Requirement</span>
+            </li>
+            <li class="creditblock">
+              <a href="drop.html" class="drop">&times;</a>
+              <h3 class="coursenumber">CS4803CNS</h3>
+              <div class="coursename">Introduction to Programming</div>
+              <span class="requirement">Requirement</span>
+            </li>
+            <li class="creditblock">
+              <span class="blank">&nbsp;</span>
+              <h3 class="coursenumber">ENG1101</h3>
+              <div class="coursename">Introduction to Programming</div>
+              <span class="requirement">Requirement</span>
+            </li>
+            <li class="creditblock">
+              <a href="drop.html" class="drop">&times;</a>
+              <h3 class="coursenumber">MATH1501</h3>
+              <div class="coursename">Introduction to Programming</div>
+              <span class="requirement">Requirement</span>
+            </li>
+          </ul>
+        </li>
+        
+        
+        <li class="semester future"><h2>Fall 2008</h2>
+          <ul id="2008fall">
+            <li class="creditblock">
+              <span class="blank">&nbsp;</span>
+              <h3 class="coursenumber">CS1322</h3>
+              <div class="coursename">Introduction to Programming</div>
+              <span class="requirement">Requirement</span>
+            </li>
+            <li class="creditblock">
+              <a href="drop.html" class="drop">&times;</a>
+              <h3 class="coursenumber">CS4803CNS</h3>
+              <div class="coursename">Introduction to Programming</div>
+              <span class="requirement">Requirement</span>
+            </li>
+            <li class="creditblock">
+              <span class="blank">&nbsp;</span>
+              <h3 class="coursenumber">ENG1101</h3>
+              <div class="coursename">Introduction to Programming</div>
+              <span class="requirement">Requirement</span>
+            </li>
+            <li class="creditblock">
+              <a href="drop.html" class="drop">&times;</a>
+              <h3 class="coursenumber">MATH1501</h3>
+              <div class="coursename">Introduction to Programming</div>
+              <span class="requirement">Requirement</span>
+            </li>
+          </ul>
+        </li>
+        
+      -->
+        
+      </ol>
+      
+
+
+
+      
+      
+    </div>
+    
+    <div id="sidebar">
+      <h2>Search</h2>
+      <div id="search">
+        <h3>Technical Electives</h3>
+        
+        <form id="narrow">
+          <label for="filter">Filter: </label>
+          <input type="text" id="filter" name="filter" />
+        </form>
+        
+        <ul id="lookup">
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+        </ul>
+        
+        <ol id="pagination">
+          <li>«</li>
+          <li class="current">1</li>
+          <li><a href="page.html">2</a></li>
+          <li><a href="page.html">3</a></li>
+          <li><a href="page.html">4</a></li>
+          <li><a href="page.html">5</a></li>
+          <li><a href="next.html">»</a></li>
+        </ol>
+        
+      </div>
+    </div>
+    
+    
+    <script type="text/javascript">
+     // <![CDATA[
+       
+       var activeSemesters = [
+          "2008spring",
+          "2008summer",
+          "2008fall",
+          "2009spring",
+          "2009summer"
+        ]
+        
+        for(var i = 0; i < activeSemesters.length; i++) {
+          Sortable.create(activeSemesters[i],
+             {dropOnEmpty:true,containment:activeSemesters,constraint:false,hoverclass:"drag_into"});
+        }
+           
+     // ]]>
+     </script>
+    
+    
+  </body>     
+</html>

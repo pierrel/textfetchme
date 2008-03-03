@@ -1,0 +1,97 @@
+@import url(shared.css);
+
+
+/* @group Container */
+
+#schedule {
+  width: 55%;
+  clear: left;
+  font-size: 0.9em;
+}
+
+#schedule ol, #schedule ul {
+  list-style-type: none;
+  padding: 0;
+}
+#schedule ol {
+  margin-left: 1em;
+}
+
+.semester h2 {
+  font-weight: normal;
+  margin-bottom: 0.1em;
+  margin-right: 2px;
+}
+
+.semester ul {
+  border: 1px solid #fff;
+  margin: -1px -1px 2.5em -1px;
+}
+
+.semester ul.drag_into {
+  border-color: #0f0;
+}
+
+/* @end */
+
+
+/* @group List Items */
+
+.creditblock {
+  
+}
+
+.creditblock table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.creditblock table tr {
+  border-top: none;
+}
+
+.creditblock table th, .creditblock table td {
+  text-align: left;
+  padding: 0.5em;
+  border: 1px solid;
+}
+
+.coursenumber {
+  width: 20%;
+  background: #e1e1e1;
+}
+.coursename {
+}
+.requirement {
+  width: 20%;
+}
+.creditblock table td.grade, .creditblock table td.drop, .creditblock table td.tab, .creditblock table td.blank {
+	width: 2em;
+  padding: 0;
+  text-align: center;
+  background: #e1e1e1;
+}
+.creditblock table td.tab {
+  width: 1em;
+}
+.creditblock table td.blank {
+  width: 1em;
+  background: transparent;
+  border: none;
+  /* border-right: 2px solid white; */
+}
+
+.drop a {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.5em 0;
+}
+
+/* @end */
+
+
+.details {
+  border: 1px solid;
+}

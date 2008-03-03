@@ -1,29 +1,202 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>ThreadSpace Demo</title>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+    <link rel="stylesheet" href="static/schedule.css" type="text/css" />
+    
+    <script type="text/javascript" src="static/scripts/prototype.js"></script>
+    <script type="text/javascript" src="static/scripts/effects.js"></script>
+    <script type="text/javascript" src="static/scripts/dragdrop.js"></script>
+    
+    
+    <script type="text/javascript">
+    
+    /*
+    window.onload = function() {
+      var dropLinks = document.getElementsByClassName("drop");
+      for(var i = 0; i < dropLinks.length; i++) {
+        dropLinks[i].onclick = function() { 
+          if(this.parentNode.parentNode) { 
+            alert("Drop Class: " + this.parentNode.parentNode.outerHTML); 
+            return false;
+          } else { 
+            return true; 
+          }
+        };
+      }
+    };
+    */
+    
+    </script>
+    
+  </head>
+  
   <body>
-    <h1 tal:content="student/name">Name Goes Here</h1>
-    <span tal:content="student/plan">Plan goes here</span>
-    <!--ul>
-      <li tal:repeat="requirement student/plan">
-	<span tal:replace="python:requirement['term']">Term</span> - <span tal:replace="python:requirement['requirement']">Req</span> - <span tal:replace="python:requirement['fillers']">Fillers</span>
-      </li>
-    </ul-->
-
-    <!-- >
-    the code below should work, but it's throwing some strange error.
-    Please look over it for me to see if there are any silly typos.
-    It does exactly what the above does, only with a table instead of a list.
-    <  -->
-
-    <!--table>
-      <td tal:repeat="requirement student/plan">
-	<tr tal:content="python:requirement['term']">Term goes here</tr>
-	<tr tal:content="python:requirement['requirement']">Requirement name goes here</tr>
-	<tr>
-	  <ul>
-	    <li tal:repeat="filler requirement/fillers"><span tal:replace="filler">Filler goes here</span></li>
-	  </ul>
-	</tr>
-      </td>
-    </table-->
-  </body>
+    
+    <div id="header">
+      ThreadSpace
+    </div>
+    
+    <h1>Account</h1>
+    <div id="account">
+    <span tal:replace="student/name">Some Student</span>  <a href="logout.html">Logout</a>
+    </div>
+    
+    <h1 id="menu_heading">Menu</h1>
+    <ul id="menu">
+      <li><a href="something.html">One</a></li>
+      <li class="current"><a href="something.html">Two</a></li>
+      <li><a href="something.html">Three</a></li>
+      <li><a href="something.html">Four</a></li>
+    </ul>
+    
+    <h1 id="schedule_heading">Schedule</h1>
+    <div id="schedule">
+      
+      <ol id="semesters">
+        <!-- not always current semester; auto-generate class; FIXME! -->
+        <li class="semester current" tal:repeat="term_number python:range(1, len(student.terms()))">
+          <h2 tal:content="python:'Semester ' + str(term_number)">Semester</h2>
+          <!-- FIXME: auto-generate ID -->
+              <table>
+                <tbody id="2007fall" tal:attributes="id python:'term' + str(term_number)">
+                  <tr class="creditblock" tal:repeat="requirement python:student.terms()[term_number]">
+                    <th class="coursenumber" tal:content="python:requirement['fillers']">COURSENUM</th>
+                    <td class="coursename">Dummy Text - Get From Carter</td>
+                    <td class="requirement" tal:content="python:requirement['requirement']">REQUIREMENT</td>
+                    <td class="grade" colspan="2">X</td>
+                  </tr>
+                </tbody>
+              </table>
+          
+        </li>
+      </ol>
+      
+    </div>
+    
+    <script type="text/javascript" tal:content="structure python:student.termsJavascript()">
+      alert("Content not replaced!");
+    </script>
+    
+    <div id="sidebar">
+      <h2>Search</h2>
+      <div id="search">
+        <h3>Technical Electives</h3>
+        
+        <form id="narrow" onsubmit="return false;">
+          <label for="filter">Filter: </label>
+          <input type="text" id="filter" name="filter" onkeyup="new Ajax.Updater('lookup', 'http://localhost:8080/search?query=' + escape(this.value));" />
+        </form>
+        
+        <ul id="lookup">
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li class="creditblock">
+            <table>
+              <tbody>
+                <tr>
+                  <th class="coursenumber">ECE2030</th>
+                  <td class="coursename">Introduction to Computer Engineering</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+        </ul>
+        
+        <ol id="pagination">
+          <li>«</li>
+          <li class="current">1</li>
+          <li><a href="page.html">2</a></li>
+          <li><a href="page.html">3</a></li>
+          <li><a href="page.html">4</a></li>
+          <li><a href="page.html">5</a></li>
+          <li><a href="next.html">»</a></li>
+        </ol>
+        
+      </div>
+    </div>
+    
+    
+  </body>     
 </html>
