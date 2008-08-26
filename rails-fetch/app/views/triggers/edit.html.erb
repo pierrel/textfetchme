@@ -1,0 +1,12 @@
+<h1>Editing trigger</h1>
+
+<% form_for(@trigger) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @trigger %> |
+<%= link_to 'Back', triggers_path %>

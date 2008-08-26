@@ -1,0 +1,24 @@
+<%= error_messages_for :user %>
+<%= flash[:error] %>
+<% form_for :user, @user, :url => {:action => 'update_user_prefs'} do |f| -%>
+<table id="basic_info" cellspacing="0">
+	<tr>
+		<td>email address</td> <td><%= f.text_field :login %></td>
+	</tr>
+	<tr>
+		<td>phone number</td> <td><%= f.text_field :phone %></td>
+	</tr>
+	<tr><td><%= link_to 'Change Password', :action => 'change_password' %></td></tr>
+</table>
+<fieldset>
+	<legend>Plan</legend>
+	<% Plan.find(:all).each do |plan| %>
+		<% if plan.number_of_triggers < @user.triggers.size %>
+			Remove <%= @user.triggers.size - plan.number_of_triggers %> triggers to downgrade to <%= plan.number_of_triggers %> triggers<br />
+		<% else %>
+			<%= f.radio_button("plan_id", plan.id) + (plan.number_of_triggers.to_s + " " + (plan.number_of_triggers > 1 ? "Triggers" : "Trigger")) %> <br />
+		<% end %>
+	<% end %>
+</fieldset>
+<p><%= submit_tag 'Update' %></p>
+<% end -%>

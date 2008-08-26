@@ -1,0 +1,20 @@
+<div id="secret_message">
+	<div id="notice"><%= flash[:notice] %></div>
+
+	<p>A text message was sent to your phone</p>
+
+
+	<% form_tag :action => 'phone_confirmed' do %>
+	<table cellspacing="2">
+		<tr>
+			<td>type the secret code here</td>
+			<td><%= text_field_tag 'code'%></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><%= submit_tag 'Submit' %></td>
+		</tr>
+	</table>
+	<%- end -%>
+	<p><a href="#">didn't get a message?</a></p>
+</div>

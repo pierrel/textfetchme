@@ -1,0 +1,28 @@
+<table class="trigger_list" cellspacing="0">
+	<% if @triggers.empty? %>
+		<tr>
+			<td>You have no triggers assigned!</td>
+		</tr>
+	<% else %>
+		<% for trigger in @triggers %>
+		<% @trigger = trigger %>
+		<tr class="trigger_item">
+			<div class="trigger">
+				<td><%= link_to '[X]', trigger, :method => :delete, :id => 'delete_icon' %></td>
+				<td class="key"><%= in_place_editor_field :trigger, 'key' %></td>
+				<td class="key_value_separator pointer_icon">=></td>
+				<td class="value">
+					<%= in_place_editor_field :trigger, 'value', {}, :rows => 5 %>
+				</td>
+			</div>
+		</tr>
+		<% end %>
+	<% end %>
+</table>
+
+<div id="more_buttons">
+	<div id="add_more_triggers" class="more_button">
+		<%= add_triggers_button(@user) %>
+	</div>
+</div>
+

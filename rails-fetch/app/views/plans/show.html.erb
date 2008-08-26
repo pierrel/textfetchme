@@ -1,0 +1,13 @@
+<p>
+  <b>Number of triggers:</b>
+  <%=h @plan.number_of_triggers %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%=h @plan.price %>
+</p>
+
+
+<%= link_to 'Edit', edit_plan_path(@plan) %> |
+<%= link_to 'Back', plans_path %>

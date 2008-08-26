@@ -1,0 +1,22 @@
+<h1>Listing plans</h1>
+
+<table>
+  <tr>
+    <th>Number of triggers</th>
+    <th>Price</th>
+  </tr>
+
+<% for plan in @plans %>
+  <tr>
+    <td><%=h plan.number_of_triggers %></td>
+    <td><%=h plan.price %></td>
+    <td><%= link_to 'Show', plan %></td>
+    <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
+    <td><%= link_to 'Destroy', plan, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New plan', new_plan_path %>

@@ -1,0 +1,4 @@
+Terms
+Key - single-word pointer to data
+Value - Data to which a key points
+Trigger - a Key-Value pair
