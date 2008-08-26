@@ -1,1 +1,0 @@
-<h2><span tal:content="here/name">this is REAL the top</span></h2>
