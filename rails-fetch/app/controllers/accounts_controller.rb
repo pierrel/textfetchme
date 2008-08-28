@@ -86,9 +86,10 @@ class AccountsController < ApplicationController
     end
   end
   
+  # TODO: write change_password
   def change_password
     if request.post?
-      
+    end
   end
   
 end

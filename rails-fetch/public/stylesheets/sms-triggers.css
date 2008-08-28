@@ -123,6 +123,11 @@ div#phone {
 	border-bottom: 1px solid #00bfff;
 }
 
+#logo a {
+	color: #0094c8;
+	text-decoration: none;
+}
+
 #triggers_head {
 	background-color: #85c8df;
 	display: block;
