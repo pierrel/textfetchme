@@ -6,7 +6,15 @@
 		<td>email address</td> <td><%= f.text_field :login %></td>
 	</tr>
 	<tr>
-		<td>phone number</td> <td><%= f.text_field :phone %></td>
+		<td>Phone Settings</td>
+		<td>
+		<iframe 
+		  style="width: 100%; height: 300px; border: none;" 
+		  id="zeep_mobile_settings_panel" 
+		  src="https://secure.zeepmobile.com/subscription/settings?api_key=2a19c120-f823-4b80-bdd0-164e33edde46&user_id=<%= @user.id %>"
+		>
+		</iframe>
+		</td>
 	</tr>
 	<tr><td><%= link_to 'Change Password', :action => 'change_password' %></td></tr>
 </table>

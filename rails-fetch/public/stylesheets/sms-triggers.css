@@ -1,3 +1,5 @@
+/* @override http://localhost:3000/stylesheets/sms-triggers.css?1220026945 */
+
 /* @group general */
 
 body {
@@ -113,19 +115,23 @@ div#phone {
 }
 
 #logo {
-	background-color: #85c8df;
 	padding-left: 10px;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	color: #0094c8;
 	font-size: 50px;
 	font-weight: bold;
 	border-bottom: 1px solid #00bfff;
+	background: #85c8df url(/images/patt_48b821ef52164.jpg) repeat;
 }
 
 #logo a {
-	color: #0094c8;
+	color: #ff9a00;
 	text-decoration: none;
+}
+
+#logo #logo_text {
+	background-color: #ffd776;
+	width: 140px;
 }
 
 #triggers_head {
