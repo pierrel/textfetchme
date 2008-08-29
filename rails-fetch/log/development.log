@@ -49277,3 +49277,11 @@ Rendering triggers/index
   [4;35;1mPlan Load (0.000381)[0m   [0mSELECT * FROM "plans" WHERE ("plans"."id" = 3) [0m
 Rendered triggers/_trigger_list (0.01749)
 Completed in 0.13931 (7 reqs/sec) | Rendering: 0.11423 (81%) | DB: 0.00175 (1%) | 200 OK [http://localhost/triggers]
+
+
+Processing IncomingController#index (for 127.0.0.1 at 2008-08-29 14:29:11) [GET]
+  Session ID: BAh7CToOcmV0dXJuX3RvMDoJdXNlcmkGIgpmbGFzaElDOidBY3Rpb25Db250
+cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOgxjc3JmX2lk
+IiUxZjhkNDQ0ZTE0MGMwZDM2OTRmZjBiYzE1ZWM0M2IyMw==--2d3b52e1fd269bceb5fce6345e397e1ed9e4f72f
+  Parameters: {"action"=>"index", "controller"=>"incoming"}
+Completed in 0.00326 (306 reqs/sec) | Rendering: 0.00040 (12%) | DB: 0.00000 (0%) | 200 OK [http://localhost/incoming]
