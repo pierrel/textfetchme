@@ -1,4 +1,7 @@
-/* @override http://localhost:3000/stylesheets/sms-triggers.css?1220026945 */
+/* @override 
+	http://localhost:3000/stylesheets/sms-triggers.css?1220026945
+	http://localhost:3000/stylesheets/sms-triggers.css?1220034053
+*/
 
 /* @group general */
 
@@ -67,15 +70,14 @@ span.key {
 	padding-top: 10px;
 }
 
-a.delete_icon {
-	padding-left: 50px;
-	color: #fc6f9f;
-	
-}
-
 table.trigger_list {
 	background-color: rgba(0,242,145,0.21);
 	width: 100%;
+}
+
+a#delete_icon {
+	color: #ff0014;
+	padding: 5px;
 }
 
 a.small_link {
@@ -115,9 +117,6 @@ div#phone {
 }
 
 #logo {
-	padding-left: 10px;
-	padding-top: 10px;
-	padding-bottom: 10px;
 	font-size: 50px;
 	font-weight: bold;
 	border-bottom: 1px solid #00bfff;
@@ -130,9 +129,30 @@ div#phone {
 }
 
 #logo #logo_text {
-	background-color: #ffd776;
+	background-color: #85c7dd;
 	width: 140px;
+	padding: 10px;
 }
+
+div#login {
+	float: left;
+	left: 40%;
+	position: absolute;
+	padding: 10px;
+}
+
+div#notice {
+	font-size: 15px;
+	color: #00e274;
+	padding: 5px;
+}
+
+div#error {
+	font-size: 15px;
+	color: #00e274;
+	padding: 5px;
+}
+
 
 #triggers_head {
 	background-color: #85c8df;
