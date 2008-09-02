@@ -1,3 +1,5 @@
+/* @override http://localhost:3000/stylesheets/reset.css?1215575447 */
+
 /*
  * Reset Stylesheet
  * http://meyerweb.com/eric/thoughts/2008/01/15/resetting-again/
@@ -23,6 +25,8 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 body {
 	line-height: 1;
+	letter-spacing: .02pt;
+	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 ol, ul {
 	list-style: none;
@@ -42,6 +46,11 @@ ins {
 }
 del {
 	text-decoration: line-through;
+}
+
+legend {
+	font-size: 20px;
+	font-weight: bold;
 }
 
 /* tables still need 'cellspacing="0"' in the markup */

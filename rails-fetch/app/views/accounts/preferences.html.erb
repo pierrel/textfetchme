@@ -1,6 +1,6 @@
 <%= error_messages_for :user %>
 <%= flash[:error] %>
-<% form_for :user, @user, :url => {:action => 'update_user_prefs'} do |f| -%>
+<% form_for :user, @user, :url => {:action => 'update_user_prefs'}, :html => {:id => 'preferences_form'} do |f| -%>
 <table id="basic_info" cellspacing="0">
 	<tr>
 		<td>email address</td> <td><%= f.text_field :login %></td>
@@ -11,13 +11,13 @@
 		<iframe 
 		  style="width: 100%; height: 300px; border: none;" 
 		  id="zeep_mobile_settings_panel" 
-		  src="https://secure.zeepmobile.com/subscription/settings?api_key=2a19c120-f823-4b80-bdd0-164e33edde46&user_id=<%= @user.id %>"
-		>
+		  src="https://secure.zeepmobile.com/subscription/settings?api_key=2a19c120-f823-4b80-bdd0-164e33edde46&user_id=<%= @user.id %>">
 		</iframe>
 		</td>
 	</tr>
 	<tr><td><%= link_to 'Change Password', :action => 'change_password' %></td></tr>
 </table>
+<div id="plan_form">
 <fieldset>
 	<legend>Plan</legend>
 	<% Plan.find(:all).each do |plan| %>
@@ -28,5 +28,6 @@
 		<% end %>
 	<% end %>
 </fieldset>
+</div>
 <p><%= submit_tag 'Update' %></p>
 <% end -%>

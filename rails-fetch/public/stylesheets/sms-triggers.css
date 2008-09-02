@@ -1,9 +1,15 @@
 /* @override 
 	http://localhost:3000/stylesheets/sms-triggers.css?1220026945
 	http://localhost:3000/stylesheets/sms-triggers.css?1220034053
+	http://localhost:3000/stylesheets/sms-triggers.css?1220144143
 */
 
 /* @group general */
+
+a:hover {
+	background-color: #726371;
+	color: #85c7dd;
+}
 
 body {
 	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
@@ -80,6 +86,15 @@ a#delete_icon {
 	padding: 5px;
 }
 
+#preferences_form {
+	position: absolute;
+	left: 25%;
+}
+
+div#plan_form {
+	margin-top: 20px;
+}
+
 a.small_link {
 	font-size: 12px;
 	margin-right: 5px;
@@ -124,8 +139,12 @@ div#phone {
 }
 
 #logo a {
-	color: #ff9a00;
+	color: #e71f73;
 	text-decoration: none;
+}
+
+#logo a:hover {
+	background-color: #85c7dd;
 }
 
 #logo #logo_text {
@@ -155,7 +174,7 @@ div#error {
 
 
 #triggers_head {
-	background-color: #85c8df;
+	background-color: #88c6db;
 	display: block;
 	width: 100%;
 	-moz-border-radius-topleft: 5px;
@@ -169,7 +188,7 @@ div#error {
 span#your_triggers {
 	font-size: 20px;
 	font-weight: bold;
-	color: #646371;
+	color: #e71f73;
 	padding-left: 10px;
 }
 

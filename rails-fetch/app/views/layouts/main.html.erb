@@ -17,7 +17,7 @@
 
 	<title>Your Triggers</title>
 	
-	<% unless current_user.nil? %>
+	<% unless current_user == :false %>
 	<div id="top_bar">
 			<span id="preferences_link"><%= link_to "preferences", {:controller => "accounts", :action => "preferences", :id =>  current_user.id}, {:class => 'small_link'} %></span>
 			<span id="logout_link"><%= link_to "logout", {:controller => "accounts", :action => "logout", :id => current_user.id}, {:class => "small_link"} %></span>
