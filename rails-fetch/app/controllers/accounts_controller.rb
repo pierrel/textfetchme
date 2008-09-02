@@ -22,7 +22,7 @@ class AccountsController < ApplicationController
   def signup
     if request.post?
       @user = User.new(params[:user])
-      @user.plan = Plan.find(:first, :conditions => 'number_of_triggers = 1') # TODO: change to some default method in Plan
+      @user.plan = Plan.find(:first, :conditions => 'number_of_triggers = 2') # TODO: change to some default method in Plan
       @user.save!
       self.current_user = @user
       redirect_to :action => 'phone_confirmation'
