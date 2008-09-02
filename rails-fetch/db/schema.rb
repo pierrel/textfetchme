@@ -42,8 +42,6 @@ ActiveRecord::Schema.define(:version => 20080805043839) do
     t.datetime "updated_at"
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
-    t.string   "phone"
-    t.boolean  "valid_phone"
     t.integer  "plan_id"
   end
 

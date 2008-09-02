@@ -22,7 +22,7 @@ class AccountsController < ApplicationController
   def signup
     if request.post?
       @user = User.new(params[:user])
-      @user.plan = Plan.find(:first, :conditions => 'number_of_triggers = 2') # TODO: change to some default method in Plan
+      @user.plan = Plan.find(:first, :conditions => 'price = 0') # TODO: change to some default method in Plan
       @user.save!
       self.current_user = @user
       redirect_to :action => 'phone_confirmation'
@@ -34,27 +34,11 @@ class AccountsController < ApplicationController
   end
   
   def phone_confirmation
-    unless logged_in? || User.count > 0
-      redirect_to(:action => 'signup')
-    end
-  end
-  
-  def phone_confirmed
-    unless logged_in? || User.count > 0
-      redirect_to(:action => 'signup')
-    else
-      @user = current_user
-      if params[:code] == "jakelovesbrett"
-        @user.valid_phone = true 
-        @user.save!
-        flash[:notice] = "Thanks for signing up!"
-        redirect_back_or_default(:controller => '/accounts', :action => 'index')
-      else
-        flash[:notice] = "You did not enter the correct secret word"
-        render :action => 'phone_confirmation'
-      end
-    end
+    @user = current_user
     
+    unless logged_in? || User.count > 0
+      redirect_to(:action => 'signup')
+    end
   end
   
   def logout

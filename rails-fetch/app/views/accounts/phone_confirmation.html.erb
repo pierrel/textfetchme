@@ -1,20 +1,10 @@
 <div id="secret_message">
 	<div id="notice"><%= flash[:notice] %></div>
 
-	<p>A text message was sent to your phone</p>
-
-
-	<% form_tag :action => 'phone_confirmed' do %>
-	<table cellspacing="2">
-		<tr>
-			<td>type the secret code here</td>
-			<td><%= text_field_tag 'code'%></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><%= submit_tag 'Submit' %></td>
-		</tr>
-	</table>
-	<%- end -%>
-	<p><a href="#">didn't get a message?</a></p>
+	<iframe 
+	  style="width: 100%; height: 300px; border: none;" 
+	  id="zeep_mobile_settings_panel" 
+	  src="https://secure.zeepmobile.com/subscription/settings?api_key=2a19c120-f823-4b80-bdd0-164e33edde46&user_id=<%= @user.id %>">
+	</iframe><br />
+	<a href="/triggers">Done!</a> (you can also do this later)
 </div>
