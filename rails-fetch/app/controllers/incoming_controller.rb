@@ -3,9 +3,9 @@ class IncomingController < ApplicationController
   
   def index
     if request.post? 
-      render :text => "Hey #{User.find(params[:uid]).login}, you said #{params[:body]}", :status => 200
+      render :text => "Hey #{User.find(params[:uid]).login}, you said #{params[:body]}", :status => 200, :content_type => 'text/plain'
     else
-      render :text => "hello", :status => :ok
+      render :text => "hello", :status => :ok, :content_type => 'text/plain'
     end
   end
 end
