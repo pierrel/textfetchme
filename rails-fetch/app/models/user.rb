@@ -14,6 +14,57 @@ class User < ActiveRecord::Base
   
   has_many :triggers
   belongs_to :plan
+  
+  # returns the user's triggers in the form of a hash, may cause issues with speed.
+  def triggers_hash
+    hash = Hash.new
+    self.triggers.each do |trigger| 
+      hash[trigger.key.downcase.to_sym] = trigger.value
+      hash[trigger.key.downcase] = trigger.value
+    end
+    return hash
+  end
+  
+  # Returns trigger with given key or nil if not found
+  def trigger_with_key(key)
+    triggers = self.triggers.select { |trigger| trigger.key.downcase == key.downcase }
+    if triggers.empty?
+      return nil
+    else
+      triggers[0]
+    end
+  end
+  
+  # Removes trigger from the DB and returns it. Raises
+  # NoTriggerToRemove if trigger does not exist
+  def remove_trigger(key)
+    trigger = self.trigger_with_key(key)
+    
+    Trigger.destroy(trigger.id)
+  rescue ActiveRecord::RecordNotFound
+    raise NoTriggerToRemove.new("Could not find trigger '#{key}'")
+  end
+
+  
+  # adds trigger if it does not exist and appends the 
+  # value of trigger_hash to trigger if it does. NoTriggersAvailable
+  # raised if the user does not have space for another trigger.
+  def add_trigger(trigger_hash)
+    raise InvalidArgument.new("Must be a hash with keys :key and :value") unless trigger_hash.has_key?(:key) and trigger_hash.has_key?(:value)
+    
+    existing_trigger = self.trigger_with_key(trigger_hash[:key])
+    if existing_trigger.nil? and self.more_triggers?
+      self.triggers << Trigger.new(trigger_hash)
+    elsif not self.more_triggers?
+      raise NoTriggersAvailable
+    else
+      existing_trigger.value = existing_trigger.value + ', ' + trigger_hash[:value]
+      existing_trigger.save!
+    end
+  end
+  
+  
+  
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
@@ -75,3 +126,6 @@ class User < ActiveRecord::Base
     
     
 end
+
+class NoTriggersAvailable < Exception; end
+class NoTriggerToRemove < Exception; end

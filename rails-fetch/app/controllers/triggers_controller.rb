@@ -21,7 +21,7 @@ class TriggersController < ApplicationController
     @user = User.find(params[:id])
     if @user.more_triggers?
       @trigger = Trigger.new(:key => 'Trigger', :value => 'Information')    
-      @user.triggers << @trigger
+      @user.add_trigger(@trigger)
       @triggers = @user.triggers
       render :partial => 'trigger_list'
     else

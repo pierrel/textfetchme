@@ -1,9 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  number_of_triggers: 1
-  price: 9.99
+free:
+  id: 1
+  number_of_triggers: 2
+  price: 0.00
 
-two:
-  number_of_triggers: 1
-  price: 9.99
+five:
+  id: 2
+  number_of_triggers: 5
+  price: 3

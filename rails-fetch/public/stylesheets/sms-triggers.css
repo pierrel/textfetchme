@@ -2,6 +2,7 @@
 	http://localhost:3000/stylesheets/sms-triggers.css?1220026945
 	http://localhost:3000/stylesheets/sms-triggers.css?1220034053
 	http://localhost:3000/stylesheets/sms-triggers.css?1220144143
+	http://localhost:3000/stylesheets/sms-triggers.css?1220314710
 */
 
 /* @group general */
@@ -149,8 +150,8 @@ div#phone {
 
 #logo #logo_text {
 	background-color: #85c7dd;
-	width: 140px;
 	padding: 10px;
+	width: 315px;
 }
 
 div#login {
