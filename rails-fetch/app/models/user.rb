@@ -40,7 +40,11 @@ class User < ActiveRecord::Base
   def remove_trigger(key)
     trigger = self.trigger_with_key(key)
     
-    Trigger.destroy(trigger.id)
+    if trigger.destroy
+      return trigger
+    else
+      return nil
+    end
   rescue ActiveRecord::RecordNotFound
     raise NoTriggerToRemove.new("Could not find trigger '#{key}'")
   end

@@ -1,26 +1,31 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 Chopin:
+    id: 1
     key: Chopin
     value: banana, artichoke, pikachu
     user_id: 1
 
 Reading:
+    id: 2
     key: reading
     value: A Tale of Two Cities, Heart of Darkness, Pride and Prejudice
     user_id: 1
 
 Day:
+    id: 3
     key: day
     value: tuesday
     user_id: 1
 
 Shop:
+    id: 4
     key: SHOpping
     value: pizza, ramen, mac and cheese
     user_id: 2
 
 Play:
+    id: 5
     key: videogame
     value: turok
     user_id: 2

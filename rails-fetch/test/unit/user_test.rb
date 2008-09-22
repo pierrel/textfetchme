@@ -4,7 +4,7 @@ class UserTest < Test::Unit::TestCase
   # Be sure to include AuthenticatedTestHelper in test/test_helper.rb instead.
   # Then, you can remove it from this and the functional test.
   include AuthenticatedTestHelper
-  fixtures :users, :plans
+  fixtures :users, :plans, :triggers
 
   def test_should_create_user
     assert_difference User, :count do
@@ -80,7 +80,7 @@ class UserTest < Test::Unit::TestCase
       aaron.add_trigger(:key => 'movie', :value => 'fantastic four')
     }
   end
-  
+    
   def test_hashed_triggers
     trigger = users(:aaron).triggers_hash['videogame']
     assert_not_nil(trigger)
@@ -104,18 +104,24 @@ class UserTest < Test::Unit::TestCase
     assert_respond_to(users(:quentin), :remove_trigger)
     
     quentin = users(:quentin)
-    assert_equal(quentin.remove_trigger('day').value, 'tuesday')
     assert_equal(3, quentin.triggers.size)
     
+    #assert_equal(quentin.remove_trigger('day').value, 'tuesday')
+    quentin.trigger_with_key('day').destroy
+    assert_equal(2, quentin.triggers.size)
+    
+    
     aaron = users(:aaron)
+    assert_equal(2, aaron.triggers.size)
+    
     assert_equal(aaron.remove_trigger('videogame').value, 'turok')
-    #assert_equal(1, aaron.triggers.size)
+    assert_equal(1, aaron.triggers.size)
     
     assert_equal(aaron.remove_trigger('shopping').value, 'pizza, ramen, mac and cheese')
     assert(aaron.triggers)
     
     assert_raises(NoTriggerToRemove) {
-      aaron.remove_trigger('videogame')
+      aaron.find.remove_trigger('videogame')
     }
   end
 
