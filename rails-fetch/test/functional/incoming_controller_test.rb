@@ -52,7 +52,7 @@ class IncomingControllerTest < ActionController::TestCase
     assert(quentin.triggers.size == 4)
     assert(quentin.find_trigger('hockey').value == "#{hockey1}, #{hockey2}")
     
-    post :index, :event => 'MO', :uid => 1, :body 'hockey'
+    post :index, :event => 'MO', :uid => 1, :body => 'hockey'
     assert_response :success, "#{hockey1}, #{hockey2}"
   end
   
@@ -64,7 +64,7 @@ class IncomingControllerTest < ActionController::TestCase
   end
   
   def test_add_too_large
-    post :index, :event => 'MO', :uid =>1, :body => "too large: " + String.random :length => 450
+    post :index, :event => 'MO', :uid =>1, :body => ("too large: " + String.random(:length => 450))
     assert_response :success, "Could not add trigger because it was over 440 characters long"
   end
   
@@ -96,7 +96,7 @@ class IncomingControllerTest < ActionController::TestCase
     remove = "'fetchme remove trigger' will remove the trigger 'trigger' from your account"
     
     post :index, :event => 'MO', :uid => 2, :body => "help"
-    assert_response, :success, trigger + add + remove
+    assert_response :success, (trigger + add + remove)
   end
 
 end

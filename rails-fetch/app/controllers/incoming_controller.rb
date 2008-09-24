@@ -8,11 +8,11 @@ class IncomingController < ApplicationController
       body= params[:body].downcase
       user = User.find(params[:uid])
       if not user.nil?
-        matching_trigger_value = user.triggers[body]
-        unless matching_trigger.nil?
+        matching_trigger = user.trigger_with_key(params[:body])
+        if matching_trigger.nil?
           text = "'#{params[:body]}' not found. These are your triggers: #{user.triggers.collect {|trigger| trigger.key }.join(", ")}."
         else
-          text = matching_trigger_value
+          text = matching_trigger.value
         end
       else
         render :text => "error, no user", :status => 400
