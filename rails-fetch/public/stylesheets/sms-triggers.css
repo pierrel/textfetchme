@@ -1,10 +1,3 @@
-/* @override 
-	http://localhost:3000/stylesheets/sms-triggers.css?1220026945
-	http://localhost:3000/stylesheets/sms-triggers.css?1220034053
-	http://localhost:3000/stylesheets/sms-triggers.css?1220144143
-	http://localhost:3000/stylesheets/sms-triggers.css?1220314710
-*/
-
 /* @group general */
 
 a:hover {
@@ -105,8 +98,6 @@ a.small_link {
 input[type="text"], input[type="password"] {
 	font-size: 100%;
 	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-	-webkit-border-radius: 5px;
-	-moz=border-radius: 5px;
 }
 
 form#signup {

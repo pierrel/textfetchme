@@ -1,3 +1,5 @@
+require 'helpers/triggers_helper'
+
 class TriggersController < ApplicationController
   layout 'main'
   
@@ -18,10 +20,15 @@ class TriggersController < ApplicationController
   end
   
   def new_trigger_for_user
-    @user = User.find(params[:id])
+    @user = current_user
+    default_trigger_key = 'Trigger'
+    default_trigger_value = 'Information'
+    
     if @user.more_triggers?
-      @trigger = Trigger.new(:key => 'Trigger', :value => 'Information')    
-      @user.add_trigger(@trigger)
+      postfix = @user.number_of_defaulted_triggers(default_trigger_key)
+      postfix = '' if postfix == 0
+      trigger_key = default_trigger_key + postfix.to_s
+      @user.add_trigger(:key => trigger_key, :value => default_trigger_value)
       @triggers = @user.triggers
       render :partial => 'trigger_list'
     else
@@ -41,29 +48,6 @@ class TriggersController < ApplicationController
     end
   end
 
-  # GET /triggers/1/edit
-  def edit
-    @trigger = Trigger.find(params[:id])
-  end
-
-  # POST /triggers
-  # POST /triggers.xml
-  def create
-    params[:trigger][:user_id] = current_user.id # setup the user_id to point to the current user
-    @trigger = Trigger.new(params[:trigger])
-
-    respond_to do |format|
-      if @trigger.save
-        flash[:notice] = 'Trigger was successfully created.'
-        format.html { redirect_to :action => 'index' }
-        format.xml  { render :xml => @trigger, :status => :created, :location => @trigger }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @trigger.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
   # PUT /triggers/1
   # PUT /triggers/1.xml
   def update
@@ -72,7 +56,7 @@ class TriggersController < ApplicationController
     respond_to do |format|
       if @trigger.update_attributes(params[:trigger])
         flash[:notice] = 'Trigger was successfully updated.'
-        format.html { redirect_to(@trigger) }
+        format.html { render :text => @trigger }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

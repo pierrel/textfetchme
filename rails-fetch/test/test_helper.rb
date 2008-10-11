@@ -35,4 +35,34 @@ class Test::Unit::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def with_controller(controller)
+    old_controller = @controller
+    @controller = controller.send('new')
+    yield
+    @controller = old_controller
+  end
+
+  
+end
+
+
+module AuthHelper
+  protected
+
+  def login_as(model, id_or_attributes = {})
+    attributes = id_or_attributes.is_a?(Fixnum) ? {:id => id} : id_or_attributes
+    @current_user = stub_model(model, attributes)
+    target = controller rescue template
+    target.instance_variable_set '@current_user', @current_user
+
+    if block_given?
+      yield
+      target.instance_variable_set '@current_user', nil
+    end
+    return @current_user
+  end
+
+  def login_as_user(id_or_attributes = {}, &block)
+    login_as(User, id_or_attributes, &block)
+  end
 end

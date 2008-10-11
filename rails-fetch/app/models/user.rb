@@ -35,6 +35,11 @@ class User < ActiveRecord::Base
     end
   end
   
+  # returns an array of trigger keys
+  def trigger_keys
+    self.triggers.collect { |e| e.key }
+  end
+  
   # Removes trigger from the DB and returns it. Raises
   # NoTriggerToRemove if trigger does not exist
   def remove_trigger(key)
@@ -65,6 +70,14 @@ class User < ActiveRecord::Base
       existing_trigger.value = existing_trigger.value + ', ' + trigger_hash[:value]
       existing_trigger.save!
     end
+  end
+  
+  def number_of_defaulted_triggers(default_name)
+    count = 0
+    self.triggers.each { |trigger| 
+      count = count+1 if trigger.key.match(/^Trigger\d*/)
+    }
+    return count
   end
   
   

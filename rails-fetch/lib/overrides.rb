@@ -8,4 +8,13 @@ class String
     end
     return generated
   end
+  
+  def first_word()
+    arr = self.split(' ')
+    if arr.length >= 1
+      return arr[0]
+    else
+      return nil
+    end
+  end
 end

@@ -60,13 +60,13 @@ class AccountsControllerTest < Test::Unit::TestCase
     end
   end
 
-  def test_should_require_email_on_signup
-    assert_no_difference User, :count do
-      create_user(:email => nil)
-      assert assigns(:user).errors.on(:email)
-      assert_response :success
-    end
-  end
+  # def test_should_require_email_on_signup
+  #   assert_no_difference User, :count do
+  #     create_user(:email => nil)
+  #     assert assigns(:user).errors.on(:email)
+  #     assert_response :success
+  #   end
+  # end
 
   def test_should_logout
     login_as :quentin
