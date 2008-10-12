@@ -40,10 +40,10 @@ class IncomingControllerTest < ActionController::TestCase
     
     assert_equal(3, quentin.triggers.size)
     
-    # staight-up add
+    # straight-up add
     post :index, :event => 'MO', :uid => 1, :body => "add hockey #{hockey1}"
     assert_response 200, "added 'hockey' as '#{hockey1}'"
-    #assert_equal(4, quentin.triggers.size)
+    assert_equal(4, quentin.triggers.size)
     assert_not_nil(quentin.trigger_with_key('hockey'))
     assert_equal('played with l-shaped sticks', quentin.trigger_with_key('hockey').value)
     

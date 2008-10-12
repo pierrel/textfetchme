@@ -20,6 +20,7 @@
 	
 	<% unless current_user == :false %>
 	<div id="top_bar">
+		Logged in as <span id="userlogin"><%= current_user.login %></span>
 			<span id="preferences_link"><%= link_to "preferences", {:controller => "accounts", :action => "preferences", :id =>  current_user.id}, {:class => 'small_link'} %></span>
 			<span id="logout_link"><%= link_to "logout", {:controller => "accounts", :action => "logout", :id => current_user.id}, {:class => "small_link"} %></span>
 	</div>

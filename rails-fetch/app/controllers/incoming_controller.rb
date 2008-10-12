@@ -2,11 +2,14 @@ require 'overrides'
 
 class IncomingController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  # TODO: Process SUBSCRIPTION_UPDATE events
   
   def index
+    trigger = "'fetchme trigger' will text you the information associated with trigger 'trigger'\n"
+    add = "'fetchme add trigger info' will add 'info' to the end of the information assiciated with trigger 'trigger'\n"
+    remove = "'fetchme remove trigger' will remove the trigger 'trigger' from your account"
+    help = trigger + " " + add + " " + remove
     staus = 200
-    reserved_words = ['add', 'remove', 'help', 'triggers']
+    reserved_words = ['help', 'triggers']
     if request.post?
       if params[:event] == 'SUBSCRITION_UPDATE'
         begin
@@ -17,21 +20,25 @@ class IncomingController < ApplicationController
           status = :missing
         end
       elsif not params[:body].nil?
-        add_command = /^add ([\w\d]+)(| [\w\d]+)$/ # TODO: implement add command
-        remove_command = /^remove ([\w\d]+)/ # TODO: implement remove command
+        add_command = /^add ([\w\d]+)(| [\w\d]+)$/
+        remove_command = /^remove ([\w\d]+)/
         user = User.find(params[:uid])
         body = params[:body]
+        add_match, remove_match  = body.match(add_command), body.match(remove_command)
         if not user.nil?
-          if reserved_words.include? body
-            add_match, remove_match  = body.match(add_command), body.match(remove_command)
-            if add_match
-              user.add_trigger(:key => add_match[1], :value => add_match[2].strip)
-              text = user.trigger_with_key(add_match[1])
-            elsif remove_match
+          if body == 'triggers'
+            text = user.trigger_keys.join(", ")
+          elsif body == 'help'
+            text = help
+          elsif add_match
+            user.add_trigger(:key => add_match[1], :value => add_match[2].strip)
+            text = user.trigger_with_key(add_match[1])
+          elsif remove_match
+            begin
               user.remove_trigger(remove_match[1])
               text = "removed trigger '#{remove_match[1]}'"
-            else
-              text = "'#{params[:body]}' not found. These are your triggers: #{user.trigger_keys.join(", ")}." 
+            rescue NoTriggerToRemove => e
+              text = "No trigger called '#{remove_match[1]}'"
             end
           else
             matching_trigger = user.trigger_with_key(params[:body])
