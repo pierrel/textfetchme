@@ -29,3 +29,9 @@ Play:
     key: videogame
     value: turok
     user_id: 2
+
+Huge:
+    id: 6
+    key: huge
+    value: <%= String.random :length => 450 %>
+    user_id: 3

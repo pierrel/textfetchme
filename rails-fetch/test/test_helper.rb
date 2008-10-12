@@ -1,6 +1,7 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
+require 'rexml/document'
 
 class Test::Unit::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
@@ -41,28 +42,11 @@ class Test::Unit::TestCase
     yield
     @controller = old_controller
   end
-
   
-end
-
-
-module AuthHelper
-  protected
-
-  def login_as(model, id_or_attributes = {})
-    attributes = id_or_attributes.is_a?(Fixnum) ? {:id => id} : id_or_attributes
-    @current_user = stub_model(model, attributes)
-    target = controller rescue template
-    target.instance_variable_set '@current_user', @current_user
-
-    if block_given?
-      yield
-      target.instance_variable_set '@current_user', nil
-    end
-    return @current_user
+  def assert_zeep_response(body = nil, message = nil)
+    assert_response 200, "response should be 200 OK"
+    assert_equal(body, @response.body, message) if body
+    assert @response.body.length < 410, "body is too large"
   end
-
-  def login_as_user(id_or_attributes = {}, &block)
-    login_as(User, id_or_attributes, &block)
-  end
+  
 end

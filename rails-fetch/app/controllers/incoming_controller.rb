@@ -20,7 +20,7 @@ class IncomingController < ApplicationController
           status = :missing
         end
       elsif not params[:body].nil?
-        add_command = /^add ([\w\d]+)(| [\w\d]+)$/
+        add_command = /^add ([\w\d]+)(| .+)$/
         remove_command = /^remove ([\w\d]+)/
         user = User.find(params[:uid])
         body = params[:body]
@@ -31,8 +31,12 @@ class IncomingController < ApplicationController
           elsif body == 'help'
             text = help
           elsif add_match
-            user.add_trigger(:key => add_match[1], :value => add_match[2].strip)
-            text = user.trigger_with_key(add_match[1])
+            begin
+              user.add_trigger(:key => add_match[1], :value => add_match[2].strip)
+              text = "added '#{add_match[1]}' as '#{user.trigger_with_key(add_match[1]).value}'"
+            rescue NoTriggersAvailable => e
+              text = "All available triggers are being used, remove one to add another."
+            end
           elsif remove_match
             begin
               user.remove_trigger(remove_match[1])
@@ -52,6 +56,7 @@ class IncomingController < ApplicationController
           render :text => "error, no user", :status => 400
         end
       end
+      # TODO: split text into 410-character strings and send one at a time
       render :text => text, :status => status, :content_type => 'text/plain'
     end
   end  

@@ -24,7 +24,7 @@ class TriggersControllerTest < ActionController::TestCase
 
   def test_should_update_trigger
     put :update, :id => triggers(:Chopin).id, :trigger => { :key => 'banana' }
-    assert_redirected_to :action => 'index'
+    assert_response 200
   end
 
   def test_should_destroy_trigger

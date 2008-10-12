@@ -12,25 +12,26 @@ class IncomingControllerTest < ActionController::TestCase
 
   def test_activation
     post :index, :event => 'SUBSCRITION_UPDATE', :uid => 1
-    assert_response 200, 'You have been subscribed!'
+    assert_zeep_response "Welcome to TextFetchMe!"
   end
   
   def test_bad_activation
     post :index, :event => 'SUBSCRITION_UPDATE', :uid => 255
-    assert_response 500, 'User does not exist'
+    assert_response 500
+    assert_equal('User does not exist', @response.body)
   end
   
   def test_fetch
     post :index, :event => 'MO', :uid => 1, :body => 'chopin'
-    assert_response 200, 'banana, artichoke, pikachu'
+    assert_zeep_response 'banana, artichoke, pikachu'
     
     post :index, :event => 'MO', :uid => 2, :body => 'videogAme'
-    assert_response 200, 'turok'
+    assert_zeep_response 'turok'
   end
   
   def test_bad_fetch
-    post :index, :event => 'MO', :uid => 1, :body => 'nonexistant'
-    assert_response 200, "'nonexistant' not found. These are your triggers: SHOpping, videogame."
+    post :index, :event => 'MO', :uid => 2, :body => 'nonexistant'
+    assert_zeep_response "'nonexistant' not found. These are your triggers: SHOpping, videogame."
   end
   
   def test_add
@@ -42,43 +43,43 @@ class IncomingControllerTest < ActionController::TestCase
     
     # straight-up add
     post :index, :event => 'MO', :uid => 1, :body => "add hockey #{hockey1}"
-    assert_response 200, "added 'hockey' as '#{hockey1}'"
+    assert_zeep_response "added 'hockey' as '#{hockey1}'"
     assert_equal(4, quentin.triggers.size)
     assert_not_nil(quentin.trigger_with_key('hockey'))
     assert_equal('played with l-shaped sticks', quentin.trigger_with_key('hockey').value)
     
     # add/append
     post :index, :event => 'MO', :uid => 1, :body => "add hockey #{hockey2}"
-    assert_response 200, "added '#{hockey2}' to 'hockey'"
+    assert_zeep_response "added 'hockey' as '#{hockey1 + ", " + hockey2}'"
     assert_equal(4, quentin.triggers.size)
     assert_not_nil(quentin.trigger_with_key('hockey'))
-    assert_equal("#{hockey1}, #{hockey2}", quentin.find_trigger('hockey').value)
+    assert_equal("#{hockey1}, #{hockey2}", quentin.trigger_with_key('hockey').value)
     
     post :index, :event => 'MO', :uid => 1, :body => 'hockey'
-    assert_response 200, "#{hockey1}, #{hockey2}"
+    assert_zeep_response "#{hockey1}, #{hockey2}"
   end
   
   
   def test_add_without_info
     post :index, :event => 'MO', :uid => 1, :body => "add something"
-    assert_response 200, ""
+    assert_zeep_response "added 'something' as ''"
     assert_not_nil(users(:quentin).trigger_with_key('something'))
     assert_equal("", users(:quentin).trigger_with_key('something').value)
   end
   
-  def test_add_too_large
-    post :index, :event => 'MO', :uid =>1, :body => ("too large: " + String.random(:length => 450))
-    assert_response 200, "Could not add trigger because it was over 440 characters long"
+  def test_fetch_too_large
+    post :index, :event => 'MO', :uid =>3, :body => "huge"
+    assert_zeep_response
   end
   
   def test_added_too_many
     post :index, :event => 'MO', :uid => 2, :body => 'add toomuch this is just too much'
-    assert_response 200, "All available triggers are being used, remove one to add another."
+    assert_zeep_response "All available triggers are being used, remove one to add another."
   end
   
   def test_remove
     post :index, :event => 'MO', :uid => 2, :body => 'remove videogame'
-    assert_response 200, "removed 'videogame'"
+    assert_zeep_response "removed trigger 'videogame'"
     assert_equal(1, users(:aaron).triggers.size)
   end
   
