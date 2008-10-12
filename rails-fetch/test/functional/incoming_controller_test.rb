@@ -72,6 +72,12 @@ class IncomingControllerTest < ActionController::TestCase
     assert_zeep_response
   end
   
+  def test_add_to_full_passing
+    # appends to a trigger whos account has the max number of triggers
+    post :index, :event => 'MO', :uid => 2, :body => 'add shopping lettuce'
+    assert_zeep_response "added 'shopping' as 'pizza, ramen, mac and cheese, lettuce'"
+  end
+  
   def test_added_too_many
     post :index, :event => 'MO', :uid => 2, :body => 'add toomuch this is just too much'
     assert_zeep_response "All available triggers are being used, remove one to add another."

@@ -63,11 +63,11 @@ class User < ActiveRecord::Base
     existing_trigger = self.trigger_with_key(trigger_hash[:key])
     if existing_trigger.nil? and self.more_triggers?
       self.triggers << Trigger.new(trigger_hash)
-    elsif not self.more_triggers?
-      raise NoTriggersAvailable
-    else
+    elsif existing_trigger
       existing_trigger.value = existing_trigger.value + ', ' + trigger_hash[:value]
       existing_trigger.save!
+    else
+      raise NoTriggersAvailable
     end
   end
   
