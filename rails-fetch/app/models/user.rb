@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :login, :case_sensitive => false
   before_save :encrypt_password
   
-  has_many :triggers
+  has_many :triggers, :dependent => :destroy
   belongs_to :plan
   
   # returns the user's triggers in the form of a hash, may cause issues with speed.

@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :prospective_users
+
+  map.resources :beta_codes
+
   map.resources :plans
 
   map.resources :examples

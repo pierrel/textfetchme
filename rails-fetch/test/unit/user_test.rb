@@ -33,6 +33,14 @@ class UserTest < Test::Unit::TestCase
       assert u.errors.on(:password_confirmation)
     end
   end
+  
+  def test_destroy_user
+    user_id = users(:quentin).id
+    users(:quentin).destroy
+
+    assert_equal([], Trigger.find(:all, :conditions => {:user_id => user_id})) # make sure all of user's triggers removed
+    assert_equal([], User.find(:all, :conditions => {:id => user_id})) # make sure user doesn't exist
+  end
 
   # def test_should_require_email
   #   assert_no_difference User, :count do

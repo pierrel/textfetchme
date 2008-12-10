@@ -33,5 +33,5 @@ Play:
 Huge:
     id: 6
     key: huge
-    value: <%= String.random :length => 450 %>
+    value: qwkjdfnlaksjdnflakjsdnfasdasdkfjasdkfjnqiuwyfnksjdnbcqywoduicnqwdhbciqoy8wduhpcosjndjhkabcsdocy8pqhuwodjcnjakbsdcuqywipduocjqnkwdbcjkqvwgducoyqiphuwdoijcnqkwdbcvgqwducgyqpuhowdicjnkqwbdvcqtwdgypcuhoqerkbhvqlejdc
     user_id: 3

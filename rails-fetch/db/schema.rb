@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080805043839) do
+ActiveRecord::Schema.define(:version => 20081118190937) do
+
+  create_table "beta_codes", :force => true do |t|
+    t.string   "code"
+    t.integer  "times_used"
+    t.integer  "limit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "examples", :force => true do |t|
     t.string   "name"
@@ -21,6 +29,14 @@ ActiveRecord::Schema.define(:version => 20080805043839) do
   create_table "plans", :force => true do |t|
     t.integer  "number_of_triggers"
     t.decimal  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "prospective_users", :force => true do |t|
+    t.string   "email"
+    t.string   "website"
+    t.string   "heard_from"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
