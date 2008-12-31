@@ -1,0 +1,24 @@
+<h1>Listing beta_codes</h1>
+
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Times used</th>
+    <th>Limit</th>
+  </tr>
+
+<% for beta_code in @beta_codes %>
+  <tr>
+    <td><%=h beta_code.code %></td>
+    <td><%=h beta_code.times_used %></td>
+    <td><%=h beta_code.limit %></td>
+    <td><%= link_to 'Show', beta_code %></td>
+    <td><%= link_to 'Edit', edit_beta_code_path(beta_code) %></td>
+    <td><%= link_to 'Destroy', beta_code, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New beta_code', new_beta_code_path %>

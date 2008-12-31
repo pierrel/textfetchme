@@ -57,7 +57,18 @@ class IncomingController < ApplicationController
         end
       end
       # TODO: split text into 410-character strings and send one at a time
-      render :text => text, :status => status, :content_type => 'text/plain'
+      split_text = text.divide(410)
+      first_message = split_text.shift
+      render :text => first_message, :status => status, :content_type => 'text/plain'
+      send_messages_serial(split_text, user.id)
     end
-  end  
+  end
+  
+  private
+  def send_messages_serial(messages, id)
+    messages.each do |message|
+      zeep_message = ZeepMessage.new(message, id)
+      post zeep_message.url, zeep_message.parameters, zeep_message.headers
+    end
+  end
 end

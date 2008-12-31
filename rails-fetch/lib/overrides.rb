@@ -17,4 +17,14 @@ class String
       return nil
     end
   end
+  
+  def divide(increment)
+    i = 0
+    result = []
+    until i >= self.length
+      result = result + [self.slice(i, increment)]
+      i = i + increment
+    end
+    result
+  end
 end

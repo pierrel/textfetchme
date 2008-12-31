@@ -1,0 +1,18 @@
+<p>
+  <b>Code:</b>
+  <%=h @beta_code.code %>
+</p>
+
+<p>
+  <b>Times used:</b>
+  <%=h @beta_code.times_used %>
+</p>
+
+<p>
+  <b>Limit:</b>
+  <%=h @beta_code.limit %>
+</p>
+
+
+<%= link_to 'Edit', edit_beta_code_path(@beta_code) %> |
+<%= link_to 'Back', beta_codes_path %>

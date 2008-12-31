@@ -1,0 +1,18 @@
+<p>
+  <b>Email:</b>
+  <%=h @prospective_user.email %>
+</p>
+
+<p>
+  <b>Website:</b>
+  <%=h @prospective_user.website %>
+</p>
+
+<p>
+  <b>Heard from:</b>
+  <%=h @prospective_user.heard_from %>
+</p>
+
+
+<%= link_to 'Edit', edit_prospective_user_path(@prospective_user) %> |
+<%= link_to 'Back', prospective_users_path %>

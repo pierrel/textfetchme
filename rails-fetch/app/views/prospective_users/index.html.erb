@@ -1,0 +1,24 @@
+<h1>Listing prospective_users</h1>
+
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Website</th>
+    <th>Heard from</th>
+  </tr>
+
+<% for prospective_user in @prospective_users %>
+  <tr>
+    <td><%=h prospective_user.email %></td>
+    <td><%=h prospective_user.website %></td>
+    <td><%=h prospective_user.heard_from %></td>
+    <td><%= link_to 'Show', prospective_user %></td>
+    <td><%= link_to 'Edit', edit_prospective_user_path(prospective_user) %></td>
+    <td><%= link_to 'Destroy', prospective_user, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New prospective_user', new_prospective_user_path %>
