@@ -15207,3 +15207,70 @@ Completed in 0.02166 (46 reqs/sec) | Rendering: 0.00358 (16%) | DB: 0.00074 (3%)
   [4;36;1mSQL (0.001622)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20080805043153')[0m
   [4;35;1mSQL (0.001619)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20080805043839')[0m
   [4;36;1mSQL (0.001674)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20081118190533')[0m
+  [4;36;1mSQL (0.001289)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.000659)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000250)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.000563)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000500)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.000059)[0m   [0mPRAGMA index_list("beta_codes")[0m
+  [4;36;1mSQL (0.000059)[0m   [0;1mPRAGMA index_list("examples")[0m
+  [4;35;1mSQL (0.000053)[0m   [0mPRAGMA index_list("plans")[0m
+  [4;36;1mSQL (0.000058)[0m   [0;1mPRAGMA index_list("prospective_users")[0m
+  [4;35;1mSQL (0.000054)[0m   [0mPRAGMA index_list("triggers")[0m
+  [4;36;1mSQL (0.000057)[0m   [0;1mPRAGMA index_list("users")[0m
+  [4;35;1mSQL (0.000259)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (0.000245)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.011896)[0m   [0mCREATE TABLE "beta_codes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "code" varchar(255) DEFAULT NULL NULL, "times_used" integer DEFAULT NULL NULL, "limit" integer DEFAULT NULL NULL, "created_at" datetime DEFAULT NULL NULL, "updated_at" datetime DEFAULT NULL NULL) [0m
+  [4;36;1mSQL (0.000334)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.001877)[0m   [0mCREATE TABLE "examples" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT NULL NULL, "number" integer DEFAULT NULL NULL, "created_at" datetime DEFAULT NULL NULL, "updated_at" datetime DEFAULT NULL NULL) [0m
+  [4;36;1mSQL (0.000503)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.001739)[0m   [0mCREATE TABLE "plans" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number_of_triggers" integer DEFAULT NULL NULL, "price" decimal DEFAULT NULL NULL, "created_at" datetime DEFAULT NULL NULL, "updated_at" datetime DEFAULT NULL NULL) [0m
+  [4;36;1mSQL (0.000331)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.001477)[0m   [0mCREATE TABLE "prospective_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT NULL NULL, "website" varchar(255) DEFAULT NULL NULL, "heard_from" varchar(255) DEFAULT NULL NULL, "created_at" datetime DEFAULT NULL NULL, "updated_at" datetime DEFAULT NULL NULL) [0m
+  [4;36;1mSQL (0.000397)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.001258)[0m   [0mCREATE TABLE "triggers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar(255) DEFAULT NULL NULL, "value" varchar(255) DEFAULT NULL NULL, "user_id" integer DEFAULT NULL NULL, "created_at" datetime DEFAULT NULL NULL, "updated_at" datetime DEFAULT NULL NULL) [0m
+  [4;36;1mSQL (0.000436)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.001283)[0m   [0mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "login" varchar(255) DEFAULT NULL NULL, "email" varchar(255) DEFAULT NULL NULL, "crypted_password" varchar(40) DEFAULT NULL NULL, "salt" varchar(40) DEFAULT NULL NULL, "created_at" datetime DEFAULT NULL NULL, "updated_at" datetime DEFAULT NULL NULL, "remember_token" varchar(255) DEFAULT NULL NULL, "remember_token_expires_at" datetime DEFAULT NULL NULL, "plan_id" integer DEFAULT NULL NULL) [0m
+  [4;36;1mSQL (0.000468)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.001269)[0m   [0mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;36;1mSQL (0.001440)[0m   [0;1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;35;1mSQL (0.000525)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.000113)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (0.002127)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20081118190937')[0m
+  [4;36;1mSQL (0.001547)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20080718024350')[0m
+  [4;35;1mSQL (0.001536)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20080721033253')[0m
+  [4;36;1mSQL (0.001775)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20080725033153')[0m
+  [4;35;1mSQL (0.001850)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20080805043124')[0m
+  [4;36;1mSQL (0.002408)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20080805043153')[0m
+  [4;35;1mSQL (0.002189)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20080805043839')[0m
+  [4;36;1mSQL (0.002222)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20081118190533')[0m

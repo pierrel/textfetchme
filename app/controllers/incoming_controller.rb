@@ -11,7 +11,7 @@ class IncomingController < ApplicationController
     staus = 200
     reserved_words = ['help', 'triggers']
     if request.post?
-      if params[:event] == 'SUBSCRITION_UPDATE'
+      if params[:event] == 'SUBSCRIPTION_UPDATE'
         begin
           User.find(params[:uid])
           text = 'Welcome to TextFetchMe!'
