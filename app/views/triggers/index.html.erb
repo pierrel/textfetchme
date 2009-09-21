@@ -9,6 +9,10 @@
 		</span>
 	</div>
 	<div id="trigger_list">
-		<%= render :partial => 'trigger_list' %>
+	  <% if @triggers.empty? -%>
+	  <%= render :partial => 'help' %>
+	  <% else -%>
+	  <%= render :partial => 'trigger_list' %>
+	  <% end -%>
 	</div>
 </div>

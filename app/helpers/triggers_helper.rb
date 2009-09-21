@@ -12,6 +12,6 @@ module TriggersHelper
   end
   
   def default_trigger_value
-    "Value"
+    "Information"
   end
 end
