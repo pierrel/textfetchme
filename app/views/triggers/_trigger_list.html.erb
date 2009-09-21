@@ -1,8 +1,10 @@
 <table class="trigger_list" cellspacing="0">
 	<% if @triggers.empty? %>
-		<tr>
-			<td>You have no triggers assigned!</td>
-		</tr>
+	<p>Click the link below to add a trigger.</p>
+	<br />
+	<br />
+	<p>Once you have a trigger set up, text 8814 with the message "fetchme" followed by the trigger name. Once the message is sent you will receive a text with the associated information. Try it!</p>
+	
 	<% else %>
 		<% for trigger in @triggers %>
 		<% @trigger = trigger %>
